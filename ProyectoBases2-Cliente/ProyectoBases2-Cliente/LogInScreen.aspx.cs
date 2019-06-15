@@ -22,7 +22,11 @@ namespace ProyectoBases2_Cliente
             string user = txtBx_username.Text,
                    password = txtBx_password.Text,
                    userType = cmBx_userType.Text;
-            int userResult = temp_LogIn(user, password, userType);
+
+            int userResult = temp_LogIn(user, password, userType); //aqui va la funcion de LogIn (esta mas abajo)
+
+            //de aqui en adelante se puede cambiar la parte de los codigos
+            //para que correspondan al tipo de usuario que es.
 
             if (userResult > 0)
             {
@@ -79,6 +83,13 @@ namespace ProyectoBases2_Cliente
             }
 
             return result;
+        }
+
+        private int LogIn(string user, string password, string userType)
+        {
+            //aqui va todo lo de SQL
+
+            return 0;
         }
     }
 }

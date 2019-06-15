@@ -47,6 +47,9 @@
             <br />
             <asp:Button ID="btn_login" runat="server" Text="Iniciar sesión" CssClass="margin10" Font-Size="Medium" Height="40px" OnClick="btn_login_Click" Width="160px" />
             <asp:Label ID="lbl_credError" runat="server"  Font-Size="Medium" ForeColor="Red" Text="lbl_credError" Width="200px" Visible="False"></asp:Label>
+            <br />
+            <br />
+            <asp:HyperLink ID="hl_register" runat="server" CssClass="margin10" NavigateUrl="~/RegisterScreen.aspx">¿No tienes cuenta? Registrate.</asp:HyperLink>
         </asp:Panel>
     </form>
     
