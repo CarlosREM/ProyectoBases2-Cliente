@@ -1,12 +1,12 @@
 USE [master]
 GO
-/****** Object:  Database [Empresa]    Script Date: 10/6/2019 3:41:44 p. m. ******/
+/****** Object:  Database [Empresa]    Script Date: 14/6/2019 6:42:16 p. m. ******/
 CREATE DATABASE [Empresa]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'Empresa', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\Empresa.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+( NAME = N'Empresa', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\Empresa.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
  LOG ON 
-( NAME = N'Empresa_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\Empresa_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+( NAME = N'Empresa_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\Empresa_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
 GO
 ALTER DATABASE [Empresa] SET COMPATIBILITY_LEVEL = 140
 GO
@@ -97,7 +97,7 @@ ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES =
 GO
 USE [Empresa]
 GO
-/****** Object:  Table [dbo].[Clientes]    Script Date: 10/6/2019 3:41:44 p. m. ******/
+/****** Object:  Table [dbo].[Clientes]    Script Date: 14/6/2019 6:42:17 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -116,7 +116,7 @@ CREATE TABLE [dbo].[Clientes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[HorariosSucursales]    Script Date: 10/6/2019 3:41:45 p. m. ******/
+/****** Object:  Table [dbo].[HorariosSucursales]    Script Date: 14/6/2019 6:42:19 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -126,13 +126,14 @@ CREATE TABLE [dbo].[HorariosSucursales](
 	[dia] [varchar](20) NOT NULL,
 	[horaAbre] [time](7) NOT NULL,
 	[horaCierre] [time](7) NOT NULL,
+	[idSucursal] [int] NOT NULL,
  CONSTRAINT [PK_HorariosSucursales] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ServersSucursales]    Script Date: 10/6/2019 3:41:45 p. m. ******/
+/****** Object:  Table [dbo].[ServersSucursales]    Script Date: 14/6/2019 6:42:19 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -148,7 +149,7 @@ CREATE TABLE [dbo].[ServersSucursales](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TipoUsuario]    Script Date: 10/6/2019 3:41:45 p. m. ******/
+/****** Object:  Table [dbo].[TipoUsuario]    Script Date: 14/6/2019 6:42:19 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -162,7 +163,7 @@ CREATE TABLE [dbo].[TipoUsuario](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UsuariosClientes]    Script Date: 10/6/2019 3:41:45 p. m. ******/
+/****** Object:  Table [dbo].[UsuariosClientes]    Script Date: 14/6/2019 6:42:19 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -177,7 +178,7 @@ CREATE TABLE [dbo].[UsuariosClientes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UsuariosSistema]    Script Date: 10/6/2019 3:41:45 p. m. ******/
+/****** Object:  Table [dbo].[UsuariosSistema]    Script Date: 14/6/2019 6:42:19 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -195,9 +196,17 @@ CREATE TABLE [dbo].[UsuariosSistema](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+INSERT [dbo].[ServersSucursales] ([id], [nombreServer], [nombreSucursal], [location]) VALUES (1, N'SERVERSUCURSAL1', N'Sucursal #1', 0xE6100000010C077E54C37EF723404CDE0033DF0B55C0)
+GO
+INSERT [dbo].[ServersSucursales] ([id], [nombreServer], [nombreSucursal], [location]) VALUES (2, N'SERVERSUCURSAL2', N'Sucursal #2', 0xE6100000010CF888981249DC23406DC5FEB27B0B55C0)
+GO
+INSERT [dbo].[ServersSucursales] ([id], [nombreServer], [nombreSucursal], [location]) VALUES (3, N'SERVERSUCURSAL3', N'Sucursal #3', 0xE6100000010C91990B5C1E3B28408D5DA27A6B8C55C0)
+GO
+INSERT [dbo].[ServersSucursales] ([id], [nombreServer], [nombreSucursal], [location]) VALUES (4, N'SERVERSUCURSAL4', N'Sucursal #4', 0xE6100000010C52BAF42F49052240A2EF6E6589E053C0)
+GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Clientes]    Script Date: 10/6/2019 3:41:49 p. m. ******/
+/****** Object:  Index [IX_Clientes]    Script Date: 14/6/2019 6:42:21 p. m. ******/
 CREATE UNIQUE NONCLUSTERED INDEX [IX_Clientes] ON [dbo].[Clientes]
 (
 	[cedula] ASC
@@ -205,7 +214,7 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_Clientes] ON [dbo].[Clientes]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_UsuariosClientes]    Script Date: 10/6/2019 3:41:49 p. m. ******/
+/****** Object:  Index [IX_UsuariosClientes]    Script Date: 14/6/2019 6:42:21 p. m. ******/
 CREATE UNIQUE NONCLUSTERED INDEX [IX_UsuariosClientes] ON [dbo].[UsuariosClientes]
 (
 	[userId] ASC
@@ -213,7 +222,7 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_UsuariosClientes] ON [dbo].[UsuariosCliente
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_UsuariosSistema]    Script Date: 10/6/2019 3:41:49 p. m. ******/
+/****** Object:  Index [IX_UsuariosSistema]    Script Date: 14/6/2019 6:42:21 p. m. ******/
 CREATE UNIQUE NONCLUSTERED INDEX [IX_UsuariosSistema] ON [dbo].[UsuariosSistema]
 (
 	[userId] ASC
@@ -224,10 +233,10 @@ REFERENCES [dbo].[UsuariosClientes] ([id])
 GO
 ALTER TABLE [dbo].[Clientes] CHECK CONSTRAINT [FK_Clientes_UsuariosClientes]
 GO
-ALTER TABLE [dbo].[ServersSucursales]  WITH CHECK ADD  CONSTRAINT [FK_ServersSucursales_HorariosSucursales] FOREIGN KEY([id])
-REFERENCES [dbo].[HorariosSucursales] ([id])
+ALTER TABLE [dbo].[HorariosSucursales]  WITH CHECK ADD  CONSTRAINT [FK_HorariosSucursales_ServersSucursales] FOREIGN KEY([idSucursal])
+REFERENCES [dbo].[ServersSucursales] ([id])
 GO
-ALTER TABLE [dbo].[ServersSucursales] CHECK CONSTRAINT [FK_ServersSucursales_HorariosSucursales]
+ALTER TABLE [dbo].[HorariosSucursales] CHECK CONSTRAINT [FK_HorariosSucursales_ServersSucursales]
 GO
 ALTER TABLE [dbo].[UsuariosSistema]  WITH CHECK ADD  CONSTRAINT [FK_UsuariosSistema_ServersSucursales] FOREIGN KEY([idSucursal])
 REFERENCES [dbo].[ServersSucursales] ([id])
