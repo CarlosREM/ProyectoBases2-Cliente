@@ -1,17 +1,17 @@
 .CRUDS de inventarios
-.Consulta ventas x sucursal  x tipo de automÛvil  x paÌs y/o 
-por fechas
-.Consulta ventas  por tipo de pago x sucursal y por fechas
-.Consulta autos son los mas vendidos , por sucursal o a nivel global.
-.Consulta cu·les son los que no tienen salida, por sucursal o a nivel global.
-.Venta/Compra de autos sin o con crÈdito(20% de prima y pagos subsecuentes)
-.Pago de crÈdito (ver punto anterior)
-.Descuento de para compra/venta si tiene 3 o m·s compras en ˙ltimos 5 aÒos
-.RetenciÛn de 10% por pago(o compra) si el pago es con tarjeta.
+**.Consulta ventas x sucursal  x tipo de autom√≥vil  x pa√≠s y/o 
+  por fechas
+**.Consulta ventas  por tipo de pago x sucursal y por fechas
+**.Consulta autos son los mas vendidos , por sucursal o a nivel global.
+**.Consulta cu√°les son los que no tienen salida, por sucursal o a nivel global.
+.Venta/Compra de autos sin o con cr√©dito(20% de prima y pagos subsecuentes)
+.Pago de cr√©dito (ver punto anterior)
+.Descuento de para compra/venta si tiene 3 o m√°s compras en √∫ltimos 5 a√±os
+.Retenci√≥n de 10% por pago(o compra) si el pago es con tarjeta.
 .Tabla pago con tarjeta y tabla venta con tarjeta
 .Sign up de clientes (mayores de 18).
-.Cliente visualizar automovilez (con filtros) y ordenar por sucursal m·s cercana.
-.Cliente hacer pedido a la f·brica e indicar la fecha m·s cercana de entrega.
+.Cliente visualizar automovilez (con filtros) y ordenar por sucursal m√°s cercana.
+.Cliente hacer pedido a la f√°brica e indicar la fecha m√°s cercana de entrega.
 .Visualizar la info y fotos de un automovil y la distancia a la sucursal.
 .Visualizar las personas que trabajan en una sucursal.
 .Visualizar los horarios de una sucursal.
