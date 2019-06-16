@@ -13,6 +13,8 @@ namespace ProyectoBases2_Cliente
         private static Hashtable m_executingPages = new Hashtable();
         private MessageBox() { }
 
+        private static string redirectPage = "";
+
         public static void Show(string sMessage)
         {
             // If this is the first time a page has called this method then
@@ -46,6 +48,12 @@ namespace ProyectoBases2_Cliente
             }
         }
 
+        public static void Show_Redirect(string Message, string PageRedirect)
+        {
+            redirectPage = PageRedirect;
+            Show(Message);
+        }
+
         // Our page has finished rendering so lets output the
         // JavaScript to produce the alert's
         private static void ExecutingPage_Unload(object sender, EventArgs e)
@@ -68,6 +76,13 @@ namespace ProyectoBases2_Cliente
                     sMsg = sMsg.Replace("\"", "'");
                     sb.Append(@"alert( """ + sMsg + @""" );");
                 }
+                
+                if (!redirectPage.Equals(""))
+                {
+                    sb.Append("window.location = '" + redirectPage + "';");
+                    redirectPage = "";
+                }
+
                 // Close our JS
                 sb.Append(@"</script>");
                 // Were done, so remove our page reference from the hashtable

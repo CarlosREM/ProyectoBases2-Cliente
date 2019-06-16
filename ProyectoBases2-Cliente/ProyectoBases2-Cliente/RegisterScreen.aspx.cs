@@ -115,52 +115,53 @@ namespace ProyectoBases2_Cliente
                 string password = txtBx_password.Text;
 
                 string Constr = WebConfigurationManager.ConnectionStrings["ProyectoBases"].ConnectionString;
+
+                SqlConnection con = new SqlConnection(Constr);
+                SqlCommand cmd = new SqlCommand("[Empresa].[dbo].[spRegistrarCliente]", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@nombre", nombre));
+                cmd.Parameters.Add(new SqlParameter("@apellido", apellido));
+                cmd.Parameters.Add(new SqlParameter("@fechaNacimiento", d));
+                cmd.Parameters.Add(new SqlParameter("@correo", correo));
+                cmd.Parameters.Add(new SqlParameter("@telefono", telefono));
+                cmd.Parameters.Add(new SqlParameter("@cedula", cedula));
+                cmd.Parameters.Add(new SqlParameter("@username", username));
+                cmd.Parameters.Add(new SqlParameter("@password", password));
+
+                SqlParameter returnParam = cmd.Parameters.Add("@return_value", SqlDbType.Int);
+                returnParam.Direction = ParameterDirection.ReturnValue;
+                con.Open();
+                cmd.ExecuteNonQuery();
+                int count = int.Parse(cmd.Parameters["@return_value"].Value.ToString());
+                con.Close();
+                Debug.WriteLine("Return value: " + count);
+
+                string msg = "";
+                switch (count)
                 {
-                    try
-                    {
-                        SqlConnection con = new SqlConnection(Constr);
-                        SqlCommand cmd = new SqlCommand("[Empresa].[dbo].[spRegistrarCliente]", con);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add(new SqlParameter("@nombre", nombre));
-                        cmd.Parameters.Add(new SqlParameter("@apellido", apellido));
-                        cmd.Parameters.Add(new SqlParameter("@fechaNacimiento", d));
-                        cmd.Parameters.Add(new SqlParameter("@correo", correo));
-                        cmd.Parameters.Add(new SqlParameter("@telefono", telefono));
-                        cmd.Parameters.Add(new SqlParameter("@cedula", cedula));
-                        cmd.Parameters.Add(new SqlParameter("@username", username));
-                        cmd.Parameters.Add(new SqlParameter("@password", password));
+                    case -2:
+                        msg = "El cliente debe ser mayor de edad.";
+                        break;
+                    case -1:
+                        msg = "El usuario ya existe.";
+                        break;
+                    case 0:
+                        msg = "Hay valores nulos.";
+                        break;
+                    case 1:
+                        msg = "Usuario registrado exitosamente.";
+                        break;
+                    default:
+                        break;
 
-                        SqlParameter returnParam = cmd.Parameters.Add("@return_value", SqlDbType.Int);
-                        returnParam.Direction = ParameterDirection.ReturnValue;
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                        int count = int.Parse(cmd.Parameters["@return_value"].Value.ToString());
-                        con.Close();
-                        Debug.WriteLine("Return value: " + count);
-                        switch (count)
-                        {
-                            case -2: MessageBox.Show("El cliente debe ser mayor de edad");
-                                break;
-                            case -1: MessageBox.Show("El usuario ya existe");
-                                break;
-                            case 0: MessageBox.Show("Hay valores nulos");
-                                break;
-                            case 1: MessageBox.Show("Usuario registrado exitosamente.");
-                                break;
-                            default:
-                                break;
+                }
 
-                        }
-                    }catch(Exception ex)
-                    {
-                        Debug.WriteLine(ex.ToString());
-                    }
-                }              
-                Response.Redirect("LogInScreen.aspx",false);
+                MessageBox.Show_Redirect(msg, "LogInScreen.aspx");
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error al tratar de registrar el usuario. Inténtelo más tarde.");
+                Debug.WriteLine(ex.ToString());
+                MessageBox.Show("Ha ocurrido un error al tratar de registrar el usuario. Inténtelo nuevamente.");
             }
         }
 

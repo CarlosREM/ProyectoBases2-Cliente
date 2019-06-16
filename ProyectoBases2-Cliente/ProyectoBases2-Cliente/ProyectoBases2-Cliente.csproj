@@ -45,6 +45,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -72,10 +75,12 @@
     <Content Include="FacturadorMain.aspx" />
     <Content Include="ClientMain.aspx" />
     <Content Include="LogInScreen.aspx" />
+    <Content Include="OrderPage.aspx" />
     <Content Include="RegisterScreen.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPLocation.cs" />
     <Compile Include="MessageBox.cs" />
     <Compile Include="ConsultorMain.aspx.cs">
       <DependentUpon>ConsultorMain.aspx</DependentUpon>
@@ -104,6 +109,13 @@
     </Compile>
     <Compile Include="LogInScreen.aspx.designer.cs">
       <DependentUpon>LogInScreen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderPage.aspx.cs">
+      <DependentUpon>OrderPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderPage.aspx.designer.cs">
+      <DependentUpon>OrderPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterScreen.aspx.cs">
