@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -99,10 +104,59 @@ namespace ProyectoBases2_Cliente
 
             try
             {
-                //aqui va todo lo de SQL
+                string nombre = txtBx_nombre.Text;
+                string apellido = apellido = txtBx_apellido.Text;
+                string fechaNacimientoDatos = getMes(cmBx_mes.SelectedValue) + "/" + cmBx_dia.SelectedValue + "/" + cmBx_anho.SelectedValue;
+                DateTime d = DateTime.ParseExact(fechaNacimientoDatos, "MM/dd/yyyy", new CultureInfo("en-US"));
+                string correo = txtBx_correo.Text;
+                string telefono = txtBx_telefono.Text;
+                string cedula = txtBx_cedula.Text;
+                string username = txtBx_username.Text;
+                string password = txtBx_password.Text;
 
-                MessageBox.Show("Usuario registrado exitosamente.");
-                Response.Redirect("LogInScreen.aspx");
+                string Constr = WebConfigurationManager.ConnectionStrings["ProyectoBases"].ConnectionString;
+                {
+                    try
+                    {
+                        SqlConnection con = new SqlConnection(Constr);
+                        SqlCommand cmd = new SqlCommand("[Empresa].[dbo].[spRegistrarCliente]", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new SqlParameter("@nombre", nombre));
+                        cmd.Parameters.Add(new SqlParameter("@apellido", apellido));
+                        cmd.Parameters.Add(new SqlParameter("@fechaNacimiento", d));
+                        cmd.Parameters.Add(new SqlParameter("@correo", correo));
+                        cmd.Parameters.Add(new SqlParameter("@telefono", telefono));
+                        cmd.Parameters.Add(new SqlParameter("@cedula", cedula));
+                        cmd.Parameters.Add(new SqlParameter("@username", username));
+                        cmd.Parameters.Add(new SqlParameter("@password", password));
+
+                        SqlParameter returnParam = cmd.Parameters.Add("@return_value", SqlDbType.Int);
+                        returnParam.Direction = ParameterDirection.ReturnValue;
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        int count = int.Parse(cmd.Parameters["@return_value"].Value.ToString());
+                        con.Close();
+                        Debug.WriteLine("Return value: " + count);
+                        switch (count)
+                        {
+                            case -2: MessageBox.Show("El cliente debe ser mayor de edad");
+                                break;
+                            case -1: MessageBox.Show("El usuario ya existe");
+                                break;
+                            case 0: MessageBox.Show("Hay valores nulos");
+                                break;
+                            case 1: MessageBox.Show("Usuario registrado exitosamente.");
+                                break;
+                            default:
+                                break;
+
+                        }
+                    }catch(Exception ex)
+                    {
+                        Debug.WriteLine(ex.ToString());
+                    }
+                }              
+                Response.Redirect("LogInScreen.aspx",false);
             }
             catch
             {
@@ -117,7 +171,7 @@ namespace ProyectoBases2_Cliente
                  apellido = txtBx_apellido.Text.Equals(""),
                  cedula =   txtBx_cedula.Text.Equals(""),
                  DoB = (cmBx_dia.SelectedIndex == 0) & (cmBx_mes.SelectedIndex == 0) & (cmBx_anho.SelectedIndex == 0),
-                 correo =   txtBx_cedula.Text.Equals(""),
+                 correo =   txtBx_correo.Text.Equals(""),
                  telefono = txtBx_telefono.Text.Equals(""),
                  username = txtBx_username.Text.Equals(""),
                  password = txtBx_password.Text.Equals("");
@@ -130,7 +184,27 @@ namespace ProyectoBases2_Cliente
 
         protected void btn_atras_Click(object sender, EventArgs e)
         {
-            Response.Redirect("LogInScreen.aspx");
+            Response.Redirect("LogInScreen.aspx",false);
+        }
+
+        private string getMes(string mes)
+        {
+            switch (mes)
+            {
+                case "1": return "01";
+                case "2": return "02";
+                case "3": return "03";
+                case "4": return "04";
+                case "5": return "05";
+                case "6": return "06";
+                case "7": return "07";
+                case "8": return "08";
+                case "9": return "09";
+                case "10": return "10";
+                case "11": return "11";
+                case "12": return "12";
+                default: return "";
+            }
         }
     }
 }
