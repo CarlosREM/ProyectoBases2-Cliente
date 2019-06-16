@@ -18,6 +18,7 @@ namespace ProyectoBases2_Cliente
         {
             IPLocation Location = new IPLocation();
             Location.IPAddress = GetIPAddress();
+            // NOTA : La siguiente linea tira nulo y todo se cae. Revisar.
             string retJson = DownloadDataNoAuth(string.Format("https://www.freegeoip.net/json/{0}", Location.IPAddress));
             var JO = JObject.Parse(retJson);
             Location.Latitude =   (string) JO["latitude"];

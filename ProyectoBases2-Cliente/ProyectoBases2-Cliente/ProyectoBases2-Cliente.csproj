@@ -74,12 +74,20 @@
     <Content Include="ConsultorMain.aspx" />
     <Content Include="FacturadorMain.aspx" />
     <Content Include="ClientMain.aspx" />
+    <Content Include="Facturador_Register.aspx" />
     <Content Include="LogInScreen.aspx" />
     <Content Include="OrderPage.aspx" />
     <Content Include="RegisterScreen.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Facturador_Register.aspx.cs">
+      <DependentUpon>Facturador_Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Facturador_Register.aspx.designer.cs">
+      <DependentUpon>Facturador_Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="IPLocation.cs" />
     <Compile Include="MessageBox.cs" />
     <Compile Include="ConsultorMain.aspx.cs">

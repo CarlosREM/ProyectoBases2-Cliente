@@ -10,6 +10,8 @@ namespace ProyectoBases2_Cliente
 {
     public partial class ClientMain : System.Web.UI.Page
     {
+        IPLocation location; //aqui se guarda la ubicacion (lat y long) del user
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.IsPostBack)
@@ -20,6 +22,7 @@ namespace ProyectoBases2_Cliente
             else
             {
                 lbl_user.Text += Session["username"].ToString();
+                //location = IPLocation.GetIPLocation();
                 loadSucursal();
             }
         }
@@ -144,11 +147,13 @@ namespace ProyectoBases2_Cliente
             string sucursalName = "";
             if (IsPostBack)
             {
+                //aqui va el codigo al seleccionar una sucursal
                 sucursalName = cmBx_sucursal.SelectedValue;
             }
             else
             {
-                sucursalName = "Sucursal default";
+                //aqui va cuando carga por primera vez. Podria ejecutarse como... averiguar cual es la mas cercana, basandose en la posicion del user
+                sucursalName = "Sucursal cerca de Lat."; //+ location.Latitude + ":Long." + location.Longitude;
             }
 
             MessageBox.Show("Cargando sucursal "+sucursalName);

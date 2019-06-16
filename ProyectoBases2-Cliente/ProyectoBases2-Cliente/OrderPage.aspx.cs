@@ -11,11 +11,7 @@ namespace ProyectoBases2_Cliente
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack)
-            {
-
-            }
-            else
+            if (!IsPostBack)
             {
                 lbl_user.Text += Session["username"].ToString();
             }

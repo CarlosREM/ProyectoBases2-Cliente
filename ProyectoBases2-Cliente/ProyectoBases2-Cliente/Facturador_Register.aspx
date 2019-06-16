@@ -1,41 +1,48 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegisterScreen.aspx.cs" Inherits="ProyectoBases2_Cliente.RegisterScreen" Culture="es-CR" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Facturador_Register.aspx.cs" Inherits="ProyectoBases2_Cliente.Facturador_Register"   Culture="es-CR" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Registro de Clientes</title>
+    <title>Menu Principal - Facturador</title>
     <style>
+        .margin20 {
+            margin: 20px;
+        }
         .margin10 {
             margin: 10px;
         }
-        .margin10_r {
+        .margin10_c {
             margin: 10px;
-            text-align: right;
+            text-align: center;
             text-anchor: middle;
         }
         .margin5 {
             margin: 5px;
         }
-        .margin5_r {
-            margin: 5px;
-            text-align: right;
-            text-anchor: middle;
-        }
     </style>
 </head>
 
-<body style="height: 696px; width: 608px;">
-    
-    <form id="registerScreen" runat="server">
-        <asp:Panel ID="PageHeader" runat="server" Height="80px" Width="600px" BackColor="#339966" BorderColor="#006600" BorderStyle="Ridge" BorderWidth="4px">
-            <br />
-            <asp:Label ID="lbl_header" runat="server" Text="Registro de Usuario" CssClass="margin10" Font-Bold="True" Font-Size="XX-Large" ForeColor="White"></asp:Label>
-        </asp:Panel>
+<body style="width: 1208px;">
 
-        <asp:Panel ID="PageBody" runat="server" Height="600px" Width="600px" BorderColor="#CCCCCC" BorderStyle="Ridge" BorderWidth="4px" HorizontalAlign="Left" Font-Size="Large">
-            <br />
-            <asp:Label ID="lbl_title" runat="server" Text="Introduzca sus datos en el campo que corresponda." CssClass="margin10_r" Font-Size="Large"></asp:Label>
+    <form id="facturadorRegister" runat="server">
+
+       <asp:Panel ID="PageHeader" runat="server" Height="80px" Width="1200px" BackColor="#339966" BorderColor="#006600" BorderStyle="Ridge" BorderWidth="4px" HorizontalAlign="Center">
+            <asp:Panel ID="PageHeader_L" runat="server"  Width="580px" Height="80px" HorizontalAlign="Left" Style="float:left">
+                <br />
+                <asp:Label ID="lbl_header" runat="server" align="left" CssClass="margin20" Font-Bold="True" Font-Size="XX-Large" ForeColor="White" Text="Facturador"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="btn_admMode" runat="server" Text="Cambiar a Consultor" Visible="False" Width="180px" OnClick="btn_admMode_Click" />
+            </asp:Panel>
+            <asp:Panel ID="PageHeader_R" runat="server" Width="620px" Height="80px" HorizontalAlign="Right" Style="float:left">
+                <asp:Label ID="lbl_user" runat="server" align="right" CssClass="margin10_c" Height="51px" Text="Conectado como: " Width="180px"></asp:Label>
+                <asp:Button ID="btn_logout" runat="server" CssClass="margin20" Height="40px" OnClick="btn_logout_Click" Text="Cerrar sesion" Width="120px" />
+            </asp:Panel>
+
+        </asp:Panel>
+    
+    <asp:Panel ID="PageBody" runat="server" Width="1160px" BorderColor="#CCCCCC" BorderStyle="Ridge" BorderWidth="4px" Style="padding:20px">
+            <asp:Label ID="lbl_title" runat="server" Text="Registrar cliente" CssClass="margin10_r" Font-Size="Large" Font-Underline="True"></asp:Label>
             <br />
             <br />
             <asp:Label ID="lbl_nombre" runat="server" CssClass="margin5_r" Height="40px" Text="Nombre y Apellido:" Width="150px" Font-Size="Medium"></asp:Label>
@@ -86,9 +93,8 @@
             <br />
             <br />
             &nbsp;<asp:Button ID="btn_atras" runat="server" CssClass="margin10" Font-Size="Small" Height="40px" Text="&lt; Atrás" Width="100px" OnClick="btn_atras_Click" />
-            <asp:Button ID="btn_register" runat="server" CssClass="margin10" Font-Size="Small" Height="40px" OnClick="btn_register_Click" Text="Registrarse" Width="160px" />
+            <asp:Button ID="btn_register" runat="server" CssClass="margin10" Font-Size="Small" Height="40px" OnClick="btn_register_Click" Text="Registrar" Width="160px" />
         </asp:Panel>
     </form>
-    
 </body>
 </html>

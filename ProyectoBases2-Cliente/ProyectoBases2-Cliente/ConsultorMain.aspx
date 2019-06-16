@@ -37,10 +37,7 @@
 
         </asp:Panel>
 
-
-
-
-        <asp:Panel ID="PageBody" runat="server" Height="400px" Width="1200px" BorderColor="#CCCCCC" BorderStyle="Ridge" BorderWidth="4px">
+        <asp:Panel ID="PageBody" runat="server" Width="1200px" BorderColor="#CCCCCC" BorderStyle="Ridge" BorderWidth="4px">
 
         </asp:Panel>
         

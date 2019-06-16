@@ -12,6 +12,11 @@
         .margin10 {
             margin: 10px;
         }
+        .margin10_c {
+            margin: 10px;
+            text-align: center;
+            text-anchor: middle;
+        }
         .margin5 {
             margin: 5px;
         }
