@@ -4,14 +4,14 @@
 **.Consulta autos son los mas vendidos , por sucursal o a nivel global.
 **.Consulta cuáles son los que no tienen salida, por sucursal o a nivel global.
 .Venta/Compra de autos sin o con crédito(20% de prima y pagos subsecuentes)
-.Pago de crédito (ver punto anterior)
+**.Pago de crédito (ver punto anterior)
 .Descuento de para compra/venta si tiene 3 o más compras en últimos 5 años
 .Retención de 10% por pago(o compra) si el pago es con tarjeta.
 .Tabla pago con tarjeta y tabla venta con tarjeta
 .Sign up de clientes (mayores de 18).
 .Cliente visualizar automovilez (con filtros) y ordenar por sucursal más cercana.
 .Cliente hacer pedido a la fábrica e indicar la fecha más cercana de entrega.
-.Visualizar la info y fotos de un automovil y la distancia a la sucursal.
+**.Visualizar la info y fotos de un automovil y la distancia a la sucursal.
 .Visualizar las personas que trabajan en una sucursal.
 .Visualizar los horarios de una sucursal.
 
