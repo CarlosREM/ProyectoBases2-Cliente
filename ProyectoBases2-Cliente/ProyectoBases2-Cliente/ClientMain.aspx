@@ -84,7 +84,9 @@
 
             <br />
             <asp:Panel ID="pnl_carros" runat="server" Style="padding:10px" CssClass="margin20">
-                holi aqui van los carros</asp:Panel>
+                <asp:GridView ID="gridCarros" runat="server" BackColor="#66FF99" BorderColor="#006600">
+                </asp:GridView>
+            </asp:Panel>
             <br />
 
             <asp:Label ID="lbl_order" runat="server" Text="¿No ves algo que te interese?" CssClass="margin20"></asp:Label>

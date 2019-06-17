@@ -162,9 +162,10 @@ namespace ProyectoBases2_Cliente
                 typeID = int.Parse(cmd.Parameters["@return_value"].Value.ToString());
                 con.Close();
 
-                if(typeID > 0)
+                if (typeID > 0)
                 {
-                    Session["idEmpleado"] = typeID;
+                    int idEmpleado = int.Parse(cmd.Parameters["@idEmpleado"].Value.ToString());
+                    Session["idEmpleado"] = idEmpleado;
                 }
 
                 Debug.WriteLine("Return value: " + typeID);

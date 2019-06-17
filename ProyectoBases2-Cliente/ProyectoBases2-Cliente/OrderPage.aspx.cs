@@ -29,7 +29,7 @@ namespace ProyectoBases2_Cliente
 
         protected void btn_order_Click(object sender, EventArgs e)
         {
-            string marca = txtBx_marca.Text,
+            /*string marca = txtBx_marca.Text,
                    modelo = txtBx_modelo.Text,
                    anho = txtBx_anho.Text;
 
@@ -50,7 +50,7 @@ namespace ProyectoBases2_Cliente
                 {
                     MessageBox.Show("Ocurrió un error al registrar el pedido. Inténtelo nuevamente.");
                 }
-            }
+            }*/
         }
     }
 }

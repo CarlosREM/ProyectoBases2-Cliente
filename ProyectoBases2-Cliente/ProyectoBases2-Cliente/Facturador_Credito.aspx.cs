@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -47,11 +50,40 @@ namespace ProyectoBases2_Cliente
                 return;
             }
 
+            int idCliente;
+            string nombre;
+            string apellido;
+
+            string Constr = WebConfigurationManager.ConnectionStrings["ProyectoBases"].ConnectionString;
+            string procedureName = "[Empresa].[dbo].[spBuscarClienteCedula]";
+            SqlConnection con = new SqlConnection(Constr);
+            SqlCommand cmd = new SqlCommand(procedureName, con);
+            SqlDataReader reader = null;
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@cedula", cedula);
+            cmd.Parameters.Add(new SqlParameter("@idCliente", SqlDbType.Int));
+            cmd.Parameters["@idCliente"].Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(new SqlParameter("@nombre", SqlDbType.VarChar, 50));
+            cmd.Parameters["@nombre"].Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(new SqlParameter("@apellido", SqlDbType.VarChar, 50));
+            cmd.Parameters["@apellido"].Direction = ParameterDirection.Output;
+
+            SqlParameter returnParam = cmd.Parameters.Add("@return_value", SqlDbType.Int);
+            returnParam.Direction = ParameterDirection.ReturnValue;
+
+            con.Open();
+
+            reader = cmd.ExecuteReader();
+
+            int count = int.Parse(cmd.Parameters["@return_value"].Value.ToString());
+            con.Close();
+
             //procesa query de SQL
             // consigue ID, nombre y apellido
-            
+
             //si no se encuentra el cliente, se muestra un mensaje. Si hay info en los txtBx's, se vacian.
-            if (cedula.Equals("0"))
+            if (count == 0)
             {
                 clientID = 0;
                 txtBx_nombre.Text = "";
@@ -64,9 +96,17 @@ namespace ProyectoBases2_Cliente
             //si sí encuentra el cliente, se ponen los datos en los txtBx
             else
             {
-                clientID = 1; //id encontrado
-                txtBx_nombre.Text = "nombre"; //nombre encontrado
-                txtBx_apellido.Text = "apellido"; //apellido encontrado
+                nombre = cmd.Parameters["@nombre"].Value.ToString();
+                apellido = cmd.Parameters["@apellido"].Value.ToString();
+                idCliente = int.Parse(cmd.Parameters["@idCliente"].Value.ToString());
+
+                Session["nombreCliente"] = nombre;
+                Session["apellidoCliente"] = apellido;
+                Session["idCliente"] = idCliente;
+
+                clientID = idCliente; //id encontrado
+                txtBx_nombre.Text = nombre; //nombre encontrado
+                txtBx_apellido.Text = apellido; //apellido encontrado
 
                 //busca los creditos en SQL
 
@@ -216,5 +256,6 @@ namespace ProyectoBases2_Cliente
             txtBx_fechaVenc.Text = "";
             pnl_pago.Visible = false;
         }
+
     }
 }

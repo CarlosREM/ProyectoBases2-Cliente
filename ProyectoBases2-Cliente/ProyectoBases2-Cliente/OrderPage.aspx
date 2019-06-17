@@ -46,15 +46,13 @@
             <asp:Label ID="Label1" runat="server" Font-Size="Larger" Font-Underline="True" Text="Información del pedido" />
             <br />
             <br />
-            <asp:Label ID="lbl_marca" runat="server" CssClass="margin5" Height="35px" Text="Marca:" Width="100px" Style="text-align:right"/>
-            <asp:TextBox ID="txtBx_marca" runat="server" CssClass="margin5"></asp:TextBox>
-            <br />
             <asp:Label ID="lbl_modelo" runat="server" CssClass="margin5" Height="35px" Text="Modelo:" Width="100px" Style="text-align:right"/>
-            <asp:TextBox ID="txtBx_modelo" runat="server" CssClass="margin5"></asp:TextBox>
+            <asp:DropDownList ID="cbmBox_modelos" runat="server">
+            </asp:DropDownList>
             <br />
-            <asp:Label ID="lbl_anho" runat="server" CssClass="margin5" Height="35px" Text="Año:" Width="100px" Style="text-align:right"/>
-            <asp:TextBox ID="txtBx_anho" runat="server" CssClass="margin5"></asp:TextBox>
-            <asp:CompareValidator ID="compVal_anho" runat="server" ErrorMessage="#!" ControlToValidate="txtBx_anho" Font-Bold="True" ForeColor="Red" Height="35px" Operator="DataTypeCheck" Type="Integer"></asp:CompareValidator>
+            <asp:Label ID="lbl_modelo0" runat="server" CssClass="margin5" Height="35px" Style="text-align:right" Text="Fecha entrega:" Width="100px" />
+            &nbsp;<asp:TextBox ID="txtBx_fecha" runat="server" ReadOnly="True"></asp:TextBox>
+            <br />
             <br />
             <asp:Label ID="Label2" runat="server" CssClass="margin10" Font-Size="Small" ForeColor="Gray" Height="50px" Text="El pedido se enviará a la última Sucursal seleccionada en el menú. Si desea cambiarla, retroceda y vuelva a llenar los espacios." Width="450px"></asp:Label>
             <br />
