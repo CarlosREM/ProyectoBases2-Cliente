@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -12,21 +15,18 @@ namespace ProyectoBases2_Cliente
     public partial class ClientMain : System.Web.UI.Page
     {
         IPLocation location; //aqui se guarda la ubicacion (lat y long) del user
-
-        static string sucursalName;
-        static bool sucursalFlag = false;
+        string nombreSucursal = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.IsPostBack)
             {
                 rdBtn_Check();
-                if (sucursalFlag)
-                    loadSucursal();
             }
             else
             {
                 lbl_user.Text += Session["username"].ToString();
+                lbl_bienvenido.Text += Session["nombreCliente"].ToString() + " " + Session["apellidoCliente"].ToString();
                 //location = IPLocation.GetIPLocation();
                 loadSucursal();
             }
@@ -37,32 +37,6 @@ namespace ProyectoBases2_Cliente
             Response.Redirect("LogInScreen.aspx", false);
         }
 
-        private void loadSucursal()
-        {
-            if (IsPostBack)
-            {
-                //aqui va el codigo al seleccionar una sucursal
-                sucursalName = cmBx_sucursal.SelectedValue;
-                sucursalFlag = false;
-            }
-            else 
-            {
-                //aqui va cuando carga por primera vez (sucursalName esta vacio)
-                //Podria ejecutarse como... averiguar cual es la mas cercana, basandose en la posicion del user
-
-                sucursalName = "default"; // funcion para sacar sucursal mas cercana
-            }
-            Debug.WriteLine("sucursalName: " + sucursalName);
-            //setDistancia(); supongo
-            //setInfoHorarios();
-            //setInfoEmpleados();
-        }
-
-        protected void btn_sucursal_Click(object sender, EventArgs e)
-        {
-            sucursalFlag = true;
-        }
-
         protected void btn_usarFiltro_Click(object sender, EventArgs e)
         {
             if (pnl_filtro.Visible)
@@ -70,6 +44,7 @@ namespace ProyectoBases2_Cliente
             else
                 pnl_filtro.Visible = true;
         }
+
 
         private void rdBtn_Check()
         {
@@ -188,6 +163,114 @@ namespace ProyectoBases2_Cliente
 
         }
 
+        private void loadSucursal()
+        {
+            string sucursalName = "";
+            if (IsPostBack)
+            {
+                nombreSucursal = cmBx_sucursal.SelectedItem.ToString();
+                Debug.WriteLine("Nombre sucursal: " + nombreSucursal);
+                setInfoHorarios(nombreSucursal);
+                setInfoEmpleados(nombreSucursal);
+
+                sucursalName = cmBx_sucursal.SelectedValue;
+            }
+            else
+            {
+                //aqui va cuando carga por primera vez. Podria ejecutarse como... averiguar cual es la mas cercana, basandose en la posicion del user
+                sucursalName = "Sucursal cerca de Lat."; //+ location.Latitude + ":Long." + location.Longitude;
+
+                cargarNombresSucursales();
+                nombreSucursal = cmBx_sucursal.SelectedItem.ToString();
+                Debug.WriteLine("Nombre sucursal: " + nombreSucursal);
+                setInfoHorarios(nombreSucursal);
+                setInfoEmpleados(nombreSucursal);
+            }
+
+            MessageBox.Show("Cargando sucursal "+ nombreSucursal);
+        }
+
+        protected void btn_sucursal_Click(object sender, EventArgs e)
+        {
+            loadSucursal();
+        }
+
+        private void setInfoHorarios(string nombreSucursal)
+        {
+            string Constr = WebConfigurationManager.ConnectionStrings["ProyectoBases"].ConnectionString;
+            string procedureName = "[Empresa].[dbo].[spGetHorariosSucursal]";
+            SqlConnection con = new SqlConnection(Constr);
+            SqlCommand cmd = new SqlCommand(procedureName, con);
+            
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nombreSucursal", nombreSucursal);
+
+            con.Open();
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet dataSet = new DataSet();
+            da.Fill(dataSet);
+
+            con.Close();
+
+            gridHorarios.DataSource = dataSet;
+            gridHorarios.DataBind();
+
+            da.Dispose();
+
+        }
+
+        private void setInfoEmpleados(string nombreSucursal)
+        {
+            string Constr = WebConfigurationManager.ConnectionStrings["ProyectoBases"].ConnectionString;
+            string procedureName = "[Empresa].[dbo].[spGetPersonasSucursal]";
+            SqlConnection con = new SqlConnection(Constr);
+            SqlCommand cmd = new SqlCommand(procedureName, con);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nombreSucursal", nombreSucursal);
+
+            con.Open();
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet dataSet = new DataSet();
+            da.Fill(dataSet);
+
+            con.Close();
+
+            gridEmpleados.DataSource = dataSet;
+            gridEmpleados.DataBind();
+
+            da.Dispose();
+        }
+
+        private void cargarNombresSucursales()
+        {
+            string Constr = WebConfigurationManager.ConnectionStrings["ProyectoBases"].ConnectionString;
+            string procedureName = "[Empresa].[dbo].[spGetNombresSucursales]";
+            SqlConnection con = new SqlConnection(Constr);
+            SqlCommand cmd = new SqlCommand(procedureName, con);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            con.Open();
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dataSet = new DataTable();
+            da.Fill(dataSet);
+
+            con.Close();
+
+            cmBx_sucursal.DataSource = dataSet;
+            cmBx_sucursal.DataBind();
+            cmBx_sucursal.DataTextField = "nombreSucursal";
+            cmBx_sucursal.DataValueField = "nombreSucursal";
+            cmBx_sucursal.DataBind();
+
+            cmBx_sucursal.SelectedIndex = 0;
+            
+            da.Dispose();
+        }
 
     }
 }

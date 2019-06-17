@@ -107,12 +107,12 @@
                 <br />
                 <br />
                 <asp:Label ID="lbl_horarios" runat="server" CssClass="margin20" ForeColor="White" Text="Horarios de Sucursal:"></asp:Label>
-                <asp:GridView ID="gv_horarios" runat="server" BackColor="#66CCFF" BorderColor="#003399" BorderWidth="3px" CssClass="margin20">
+                <asp:GridView ID="gridHorarios" runat="server" BackColor="#66CCFF" BorderColor="#003399" BorderWidth="3px" CssClass="margin20">
                 </asp:GridView>
                 <br />
                 <asp:Label ID="lbl_empleados" runat="server" CssClass="margin20" ForeColor="White" Text="Empleados de Sucursal:"></asp:Label>
                 <br />
-                <asp:GridView ID="gv_empleados" runat="server" BackColor="#66CCFF" BorderColor="#003399" BorderWidth="3px" CssClass="margin20">
+                <asp:GridView ID="gridEmpleados" runat="server" BackColor="#66CCFF" BorderColor="#003399" BorderWidth="3px" CssClass="margin20">
                 </asp:GridView>
                 <br />
             </asp:Panel>
