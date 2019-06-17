@@ -364,6 +364,33 @@ namespace ProyectoBases2_Cliente {
         protected global::System.Web.UI.WebControls.TextBox txtBx_caracteristicas;
         
         /// <summary>
+        /// lbl_precioBase control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_precioBase;
+        
+        /// <summary>
+        /// txtBx_precioBase control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBx_precioBase;
+        
+        /// <summary>
+        /// lbl_elegible control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_elegible;
+        
+        /// <summary>
         /// lbl_precio control.
         /// </summary>
         /// <remarks>
@@ -373,13 +400,40 @@ namespace ProyectoBases2_Cliente {
         protected global::System.Web.UI.WebControls.Label lbl_precio;
         
         /// <summary>
-        /// txtBx_precio control.
+        /// txtBx_precioTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBx_precio;
+        protected global::System.Web.UI.WebControls.TextBox txtBx_precioTotal;
+        
+        /// <summary>
+        /// lbl_descuento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_descuento;
+        
+        /// <summary>
+        /// txtBx_descuento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBx_descuento;
+        
+        /// <summary>
+        /// RangeValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator RangeValidator1;
         
         /// <summary>
         /// lbl_infoPago control.

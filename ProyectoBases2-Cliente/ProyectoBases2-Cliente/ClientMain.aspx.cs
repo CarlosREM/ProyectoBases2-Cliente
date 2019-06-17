@@ -14,8 +14,8 @@ namespace ProyectoBases2_Cliente
 {
     public partial class ClientMain : System.Web.UI.Page
     {
-        IPLocation location; //aqui se guarda la ubicacion (lat y long) del user
-        string nombreSucursal = "";
+        static IPLocation location; //aqui se guarda la ubicacion (lat y long) del user
+        static string nombreSucursal = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,6 +28,7 @@ namespace ProyectoBases2_Cliente
                 lbl_user.Text += Session["username"].ToString();
                 lbl_bienvenido.Text += Session["nombreCliente"].ToString() + " " + Session["apellidoCliente"].ToString();
                 //location = IPLocation.GetIPLocation();
+
                 loadSucursal();
             }
         }
@@ -37,6 +38,40 @@ namespace ProyectoBases2_Cliente
             Response.Redirect("LogInScreen.aspx", false);
         }
 
+        private void loadSucursal()
+        {
+            bool cambio = true;
+            if (IsPostBack)
+            {
+                if (nombreSucursal == cmBx_sucursal.SelectedValue)
+                    cambio = false;
+                else
+                    nombreSucursal = cmBx_sucursal.SelectedValue;
+            }
+            else
+            {
+                //aqui va cuando carga por primera vez. Podria ejecutarse como... averiguar cual es la mas cercana, basandose en la posicion del user
+                cargarNombresSucursales();
+                nombreSucursal = cmBx_sucursal.SelectedValue; //funcion para averiguar sucursal mas cercana. Retorna el nombre
+            }
+            if (cambio) {
+                Debug.WriteLine("Nombre sucursal: " + nombreSucursal);
+                //setDistancia(); supongo
+                setInfoHorarios();
+                setInfoEmpleados();
+            }
+        }
+
+        protected void btn_sucursal_Click(object sender, EventArgs e)
+        {
+            loadSucursal();
+        }
+
+        protected void btn_historial_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Client_Historial.aspx", false);
+        }
+
         protected void btn_usarFiltro_Click(object sender, EventArgs e)
         {
             if (pnl_filtro.Visible)
@@ -44,7 +79,6 @@ namespace ProyectoBases2_Cliente
             else
                 pnl_filtro.Visible = true;
         }
-
 
         private void rdBtn_Check()
         {
@@ -163,39 +197,7 @@ namespace ProyectoBases2_Cliente
 
         }
 
-        private void loadSucursal()
-        {
-            string sucursalName = "";
-            if (IsPostBack)
-            {
-                nombreSucursal = cmBx_sucursal.SelectedItem.ToString();
-                Debug.WriteLine("Nombre sucursal: " + nombreSucursal);
-                setInfoHorarios(nombreSucursal);
-                setInfoEmpleados(nombreSucursal);
-
-                sucursalName = cmBx_sucursal.SelectedValue;
-            }
-            else
-            {
-                //aqui va cuando carga por primera vez. Podria ejecutarse como... averiguar cual es la mas cercana, basandose en la posicion del user
-                sucursalName = "Sucursal cerca de Lat."; //+ location.Latitude + ":Long." + location.Longitude;
-
-                cargarNombresSucursales();
-                nombreSucursal = cmBx_sucursal.SelectedItem.ToString();
-                Debug.WriteLine("Nombre sucursal: " + nombreSucursal);
-                setInfoHorarios(nombreSucursal);
-                setInfoEmpleados(nombreSucursal);
-            }
-
-            MessageBox.Show("Cargando sucursal "+ nombreSucursal);
-        }
-
-        protected void btn_sucursal_Click(object sender, EventArgs e)
-        {
-            loadSucursal();
-        }
-
-        private void setInfoHorarios(string nombreSucursal)
+        private void setInfoHorarios()
         {
             string Constr = WebConfigurationManager.ConnectionStrings["ProyectoBases"].ConnectionString;
             string procedureName = "[Empresa].[dbo].[spGetHorariosSucursal]";
@@ -220,7 +222,7 @@ namespace ProyectoBases2_Cliente
 
         }
 
-        private void setInfoEmpleados(string nombreSucursal)
+        private void setInfoEmpleados()
         {
             string Constr = WebConfigurationManager.ConnectionStrings["ProyectoBases"].ConnectionString;
             string procedureName = "[Empresa].[dbo].[spGetPersonasSucursal]";
@@ -271,6 +273,5 @@ namespace ProyectoBases2_Cliente
             
             da.Dispose();
         }
-
     }
 }

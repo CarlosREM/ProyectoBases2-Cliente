@@ -52,6 +52,7 @@
             </asp:DropDownList>
             <asp:Button ID="btn_sucursal" runat="server" CssClass="margin10" OnClick="btn_sucursal_Click" Text="Actualizar" Font-Bold="True" ForeColor="Magenta" />
             </asp:Panel>
+
             <asp:Label ID="lbl_title" runat="server" Font-Bold="True" Font-Size="Larger" Font-Underline="True" Text="Procesando compra" Height="40px"></asp:Label>
             <asp:Button ID="btn_switchScreen" runat="server" Text="Realizar pago Crédito" Style="margin-left:700px;" Font-Size="Medium" Height="40px" Width="220px" OnClick="btn_switchScreen_Click"/>
             <br />
@@ -96,9 +97,16 @@
             <asp:Label ID="lbl_caracteristicas" runat="server" Text="Lista de Características:"></asp:Label>
             <br />
             <asp:TextBox ID="txtBx_caracteristicas" runat="server" CssClass="margin5" Height="200px" ReadOnly="True" TextMode="MultiLine" Width="475px"></asp:TextBox>
+            &nbsp;<asp:Label ID="lbl_precioBase" runat="server" CssClass="margin5" Height="35px" Text="Precio base:"></asp:Label>
+            <asp:TextBox ID="txtBx_precioBase" runat="server" CssClass="margin5"></asp:TextBox>
+            &nbsp;&nbsp;&nbsp;<asp:Label ID="lbl_elegible" runat="server" ForeColor="#00CC66" Height="35px" Text="Cliente elegible para descuento" Visible="False"></asp:Label>
             <br />
-            <asp:Label ID="lbl_precio" runat="server" Height="35px" Style="margin-left:500px" Text="Precio total:"></asp:Label>
-            <asp:TextBox ID="txtBx_precio" runat="server" CssClass="margin5" ReadOnly="True"></asp:TextBox>
+            <asp:Label ID="lbl_precio" runat="server" CssClass="margin5" Height="35px" Style="margin-left:500px" Text="Precio total: "></asp:Label>
+            <asp:TextBox ID="txtBx_precioTotal" runat="server" CssClass="margin5" ReadOnly="True"></asp:TextBox>
+            &nbsp;&nbsp;
+            <asp:Label ID="lbl_descuento" runat="server" Height="35px" Text="Descuento:" Visible="False"></asp:Label>
+            <asp:TextBox ID="txtBx_descuento" runat="server" CssClass="margin5" TextMode="Number" ToolTip="10 ~ 35" Visible="False" Width="70px">10</asp:TextBox>
+            <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtBx_descuento" ErrorMessage="!" Font-Bold="True" ForeColor="Red" Height="35px" MaximumValue="35" MinimumValue="10"></asp:RangeValidator>
             <br />
             <hr style="border:0px;border-top:1px solid gray;width:1000px;" />
             <br />
@@ -117,7 +125,7 @@
             <asp:TextBox ID="txtBx_codSeg" runat="server" CssClass="margin5" MaxLength="4" Visible="False" Width="50px"></asp:TextBox>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lbl_fechaVenc" runat="server" Height="35px" Text="Fecha venc. (mm/yy):" Visible="False"></asp:Label>
-            <asp:TextBox ID="txtBx_fechaVenc" runat="server" CssClass="margin5" Visible="False" MaxLength="5" Width="70px"></asp:TextBox>
+            <asp:TextBox ID="txtBx_fechaVenc" runat="server" CssClass="margin5" MaxLength="5" Visible="False" Width="70px"></asp:TextBox>
             <br />
             <asp:CheckBox ID="chkBx_credito" runat="server" AutoPostBack="true" Height="35px" OnCheckedChanged="chkBx_credito_CheckedChanged" Text="Comprar a Crédito" />
             &nbsp;<asp:Label ID="lbl_interes" runat="server" Height="35px" Style="margin-left:100px" Text="Interés:" Visible="False"></asp:Label>

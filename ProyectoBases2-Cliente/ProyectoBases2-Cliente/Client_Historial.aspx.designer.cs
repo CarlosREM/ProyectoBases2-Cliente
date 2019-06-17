@@ -10,16 +10,16 @@
 namespace ProyectoBases2_Cliente {
     
     
-    public partial class ConsultorMain {
+    public partial class Client_Historial {
         
         /// <summary>
-        /// consultorMain control.
+        /// clientHistorial control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm consultorMain;
+        protected global::System.Web.UI.HtmlControls.HtmlForm clientHistorial;
         
         /// <summary>
         /// PageHeader control.
@@ -47,15 +47,6 @@ namespace ProyectoBases2_Cliente {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_header;
-        
-        /// <summary>
-        /// btn_admMode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_admMode;
         
         /// <summary>
         /// PageHeader_R control.
@@ -94,129 +85,66 @@ namespace ProyectoBases2_Cliente {
         protected global::System.Web.UI.WebControls.Panel PageBody;
         
         /// <summary>
-        /// pnl_sucursal control.
+        /// btn_atras control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_sucursal;
+        protected global::System.Web.UI.WebControls.Button btn_atras;
         
         /// <summary>
-        /// lbl_sucursal control.
+        /// pnl_historial control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_sucursal;
+        protected global::System.Web.UI.WebControls.Panel pnl_historial;
         
         /// <summary>
-        /// cmBx_sucursal control.
+        /// lbl_historial control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmBx_sucursal;
+        protected global::System.Web.UI.WebControls.Label lbl_historial;
         
         /// <summary>
-        /// btn_sucursal control.
+        /// gv_historial control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_sucursal;
+        protected global::System.Web.UI.WebControls.GridView gv_historial;
         
         /// <summary>
-        /// btn_addAuto control.
+        /// pnl_creditos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_addAuto;
+        protected global::System.Web.UI.WebControls.Panel pnl_creditos;
         
         /// <summary>
-        /// btn_editAuto control.
+        /// lbl_bienvenido0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_editAuto;
+        protected global::System.Web.UI.WebControls.Label lbl_bienvenido0;
         
         /// <summary>
-        /// btn_addAuto1 control.
+        /// gv_creditos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_addAuto1;
-        
-        /// <summary>
-        /// pnl_infoSucursal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_infoSucursal;
-        
-        /// <summary>
-        /// lbl_infoSucursal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_infoSucursal;
-        
-        /// <summary>
-        /// lbl_distance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_distance;
-        
-        /// <summary>
-        /// lbl_horarios control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_horarios;
-        
-        /// <summary>
-        /// gv_horarios control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_horarios;
-        
-        /// <summary>
-        /// lbl_empleados control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_empleados;
-        
-        /// <summary>
-        /// gv_empleados control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_empleados;
+        protected global::System.Web.UI.WebControls.GridView gv_creditos;
     }
 }

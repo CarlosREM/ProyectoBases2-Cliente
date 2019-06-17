@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Menu Principal - Facturador</title>
+    <title>Registro de Cliente - Facturador</title>
     <style>
         .margin20 {
             margin: 20px;

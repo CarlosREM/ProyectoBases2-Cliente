@@ -96,7 +96,7 @@ namespace ProyectoBases2_Cliente
 
         private int LogIn(string user, string password, string userType)
         {
-            int count = 0;
+            int typeID = 0;
             string Constr = WebConfigurationManager.ConnectionStrings["ProyectoBases"].ConnectionString;
             if (userType.Equals("Cliente"))
             {
@@ -122,10 +122,10 @@ namespace ProyectoBases2_Cliente
 
                 reader = cmd.ExecuteReader();
 
-                count = int.Parse(cmd.Parameters["@return_value"].Value.ToString());
+                typeID = int.Parse(cmd.Parameters["@return_value"].Value.ToString());
                 con.Close();
 
-                if(count == 1)
+                if(typeID == 1)
                 {
                     string nombre = cmd.Parameters["@nombre"].Value.ToString();
                     string apellido = cmd.Parameters["@apellido"].Value.ToString();
@@ -136,7 +136,7 @@ namespace ProyectoBases2_Cliente
                     Session["idCliente"] = idCliente;
                 }
 
-                Debug.WriteLine("Return value: " + count);
+                Debug.WriteLine("Return value: " + typeID);
 
             }
             else if (userType.Equals("Empleado"))
@@ -159,18 +159,18 @@ namespace ProyectoBases2_Cliente
 
                 reader = cmd.ExecuteReader();
 
-                count = int.Parse(cmd.Parameters["@return_value"].Value.ToString());
+                typeID = int.Parse(cmd.Parameters["@return_value"].Value.ToString());
                 con.Close();
 
-                if(count > 0)
+                if(typeID > 0)
                 {
-                    Session["idEmpleado"] = count;
+                    Session["idEmpleado"] = typeID;
                 }
 
-                Debug.WriteLine("Return value: " + count);
+                Debug.WriteLine("Return value: " + typeID);
             }
 
-            return count;
+            return typeID;
         }
 
         private Boolean verificarDatosCompletos()

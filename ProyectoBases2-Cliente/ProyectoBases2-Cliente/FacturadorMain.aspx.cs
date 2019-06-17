@@ -13,6 +13,7 @@ namespace ProyectoBases2_Cliente
         static string sucursalName;
         static int clientID;
         static int inventarioID;
+        static bool descuentoFlag = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -77,6 +78,10 @@ namespace ProyectoBases2_Cliente
                 MessageBox.Show("Debe llenar el campo [Cédula]");
                 return;
             }
+            lbl_elegible.Visible = false;
+            lbl_descuento.Visible = false;
+            txtBx_descuento.Text = "";
+            txtBx_descuento.Visible = false;
 
             //procesa query de SQL
             // consigue ID, nombre y apellido
@@ -95,6 +100,16 @@ namespace ProyectoBases2_Cliente
                 clientID = 1; //id encontrado
                 txtBx_nombre.Text = "nombre"; //nombre encontrado
                 txtBx_apellido.Text = "apellido"; //apellido encontrado
+
+                descuentoFlag = (cedula.Equals("1")) ? true : false; //si la condicion de descuento se cumple
+
+                //si es elegible para descuento, muestra los campos
+                if (descuentoFlag)
+                {
+                    lbl_elegible.Visible = true;
+                    lbl_descuento.Visible = true;
+                    txtBx_descuento.Visible = true;
+                }
             }
         }
 
@@ -120,7 +135,7 @@ namespace ProyectoBases2_Cliente
                 txtBx_anho.Text = "";
                 txtBx_tipo.Text = "";
                 txtBx_caracteristicas.Text = "";
-                txtBx_precio.Text = "";
+                txtBx_precioTotal.Text = "";
                 MessageBox.Show("No se encontró un auto con el ID introducido");
             }
             //si sí encuentra el auto, se ponen los datos en los txtBx
@@ -135,7 +150,7 @@ namespace ProyectoBases2_Cliente
                                              "nombre: valor \n" +
                                              "nombre: valor \n" +
                                              "nombre: valor, valor, valor"; //caracteristicas encontradas
-                txtBx_precio.Text = "10"; //precio total calculado (base + extras, supongo)
+                txtBx_precioTotal.Text = "10"; //precio total calculado (base + extras, supongo)
             }
         }
 

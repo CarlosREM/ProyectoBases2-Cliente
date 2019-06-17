@@ -45,7 +45,7 @@
 
             <asp:Button ID="btn_sucursal" runat="server" Text="Actualizar" CssClass="margin10" OnClick="btn_sucursal_Click" />
 
-            <asp:Button ID="btn_historial" runat="server" Text="Ver historial de compras" style="margin-left:450px;" Width="200px" CssClass="margin10"/>
+            <asp:Button ID="btn_historial" runat="server" Text="Ver historial de compras" style="margin-left:450px;" Width="200px" CssClass="margin10" OnClick="btn_historial_Click"/>
             <br />
             <br />
 

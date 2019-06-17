@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -47,6 +48,7 @@ namespace ProyectoBases2_Cliente
             }
             catch (Exception e)
             {
+                Debug.WriteLine("IPLocation: " + e.ToString());
                 retXml = null;
             }
             return retXml;
