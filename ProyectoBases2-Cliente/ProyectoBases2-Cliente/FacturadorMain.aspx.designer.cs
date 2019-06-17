@@ -94,6 +94,42 @@ namespace ProyectoBases2_Cliente {
         protected global::System.Web.UI.WebControls.Panel PageBody;
         
         /// <summary>
+        /// pnl_sucursal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl_sucursal;
+        
+        /// <summary>
+        /// lbl_sucursal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_sucursal;
+        
+        /// <summary>
+        /// cmBx_sucursal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmBx_sucursal;
+        
+        /// <summary>
+        /// btn_sucursal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_sucursal;
+        
+        /// <summary>
         /// lbl_title control.
         /// </summary>
         /// <remarks>
@@ -103,6 +139,15 @@ namespace ProyectoBases2_Cliente {
         protected global::System.Web.UI.WebControls.Label lbl_title;
         
         /// <summary>
+        /// btn_switchScreen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_switchScreen;
+        
+        /// <summary>
         /// lbl_clientInfo control.
         /// </summary>
         /// <remarks>
@@ -110,24 +155,6 @@ namespace ProyectoBases2_Cliente {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_clientInfo;
-        
-        /// <summary>
-        /// lbl_clientID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_clientID;
-        
-        /// <summary>
-        /// cmBx_clientID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmBx_clientID;
         
         /// <summary>
         /// lbl_cedula control.
@@ -146,6 +173,15 @@ namespace ProyectoBases2_Cliente {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBx_cedula;
+        
+        /// <summary>
+        /// btn_findClient control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_findClient;
         
         /// <summary>
         /// lbl_nombre control.
@@ -220,13 +256,22 @@ namespace ProyectoBases2_Cliente {
         protected global::System.Web.UI.WebControls.Label lbl_autoID;
         
         /// <summary>
-        /// cmBx_autoID control.
+        /// txtBx_autoID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmBx_autoID;
+        protected global::System.Web.UI.WebControls.TextBox txtBx_autoID;
+        
+        /// <summary>
+        /// btn_findAuto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_findAuto;
         
         /// <summary>
         /// lbl_marca control.
@@ -281,6 +326,24 @@ namespace ProyectoBases2_Cliente {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBx_anho;
+        
+        /// <summary>
+        /// lbl_tipo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tipo;
+        
+        /// <summary>
+        /// txtBx_tipo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBx_tipo;
         
         /// <summary>
         /// lbl_caracteristicas control.

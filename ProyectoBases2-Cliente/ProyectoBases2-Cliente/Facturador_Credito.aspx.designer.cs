@@ -10,16 +10,16 @@
 namespace ProyectoBases2_Cliente {
     
     
-    public partial class ClientMain {
+    public partial class Facturador_Credito {
         
         /// <summary>
-        /// clientMain control.
+        /// facturadorCredito control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm clientMain;
+        protected global::System.Web.UI.HtmlControls.HtmlForm facturadorCredito;
         
         /// <summary>
         /// PageHeader control.
@@ -47,6 +47,15 @@ namespace ProyectoBases2_Cliente {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_header;
+        
+        /// <summary>
+        /// btn_admMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_admMode;
         
         /// <summary>
         /// PageHeader_R control.
@@ -85,327 +94,246 @@ namespace ProyectoBases2_Cliente {
         protected global::System.Web.UI.WebControls.Panel PageBody;
         
         /// <summary>
-        /// lbl_sucursal control.
+        /// lbl_title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_sucursal;
+        protected global::System.Web.UI.WebControls.Label lbl_title;
         
         /// <summary>
-        /// cmBx_sucursal control.
+        /// btn_switchScreen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmBx_sucursal;
+        protected global::System.Web.UI.WebControls.Button btn_switchScreen;
         
         /// <summary>
-        /// btn_sucursal control.
+        /// lbl_clientInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_sucursal;
+        protected global::System.Web.UI.WebControls.Label lbl_clientInfo;
         
         /// <summary>
-        /// btn_historial control.
+        /// lbl_cedula control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_historial;
+        protected global::System.Web.UI.WebControls.Label lbl_cedula;
         
         /// <summary>
-        /// lbl_bienvenido control.
+        /// txtBx_cedula control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_bienvenido;
+        protected global::System.Web.UI.WebControls.TextBox txtBx_cedula;
         
         /// <summary>
-        /// btn_usarFiltro control.
+        /// btn_findClient control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_usarFiltro;
+        protected global::System.Web.UI.WebControls.Button btn_findClient;
         
         /// <summary>
-        /// pnl_filtro control.
+        /// lbl_nombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_filtro;
+        protected global::System.Web.UI.WebControls.Label lbl_nombre;
         
         /// <summary>
-        /// rdBtn_marca control.
+        /// txtBx_nombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdBtn_marca;
+        protected global::System.Web.UI.WebControls.TextBox txtBx_nombre;
         
         /// <summary>
-        /// txtBx_marca control.
+        /// lbl_apellido control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBx_marca;
+        protected global::System.Web.UI.WebControls.Label lbl_apellido;
         
         /// <summary>
-        /// rdBtn_modelo control.
+        /// txtBx_apellido control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdBtn_modelo;
+        protected global::System.Web.UI.WebControls.TextBox txtBx_apellido;
         
         /// <summary>
-        /// txtBx_modelo control.
+        /// lbl_creditos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBx_modelo;
+        protected global::System.Web.UI.WebControls.Label lbl_creditos;
         
         /// <summary>
-        /// rdBtn_anho control.
+        /// pnl_noCreditos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdBtn_anho;
+        protected global::System.Web.UI.WebControls.Panel pnl_noCreditos;
         
         /// <summary>
-        /// txtBx_anho control.
+        /// lbl_noCreditos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBx_anho;
+        protected global::System.Web.UI.WebControls.Label lbl_noCreditos;
         
         /// <summary>
-        /// compVal_anho control.
+        /// pnl_creditos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator compVal_anho;
+        protected global::System.Web.UI.WebControls.Panel pnl_creditos;
         
         /// <summary>
-        /// rdBtn_tipo control.
+        /// gv_creditos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdBtn_tipo;
+        protected global::System.Web.UI.WebControls.GridView gv_creditos;
         
         /// <summary>
-        /// txtBx_tipo control.
+        /// pnl_pago control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBx_tipo;
+        protected global::System.Web.UI.WebControls.Panel pnl_pago;
         
         /// <summary>
-        /// rdBtn_precio control.
+        /// lbl_clientInfo0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdBtn_precio;
+        protected global::System.Web.UI.WebControls.Label lbl_clientInfo0;
         
         /// <summary>
-        /// txtBx_precioMin control.
+        /// lbl_metodoPago control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBx_precioMin;
+        protected global::System.Web.UI.WebControls.Label lbl_metodoPago;
         
         /// <summary>
-        /// compVal_precioMin control.
+        /// cmBx_metodoPago control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator compVal_precioMin;
+        protected global::System.Web.UI.WebControls.DropDownList cmBx_metodoPago;
         
         /// <summary>
-        /// txtBx_precioMax control.
+        /// lbl_numTarjeta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBx_precioMax;
+        protected global::System.Web.UI.WebControls.Label lbl_numTarjeta;
         
         /// <summary>
-        /// compVal_precioMax control.
+        /// txtBx_numTarjeta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator compVal_precioMax;
+        protected global::System.Web.UI.WebControls.TextBox txtBx_numTarjeta;
         
         /// <summary>
-        /// rdBtn_caracteristica control.
+        /// lbl_codSeg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdBtn_caracteristica;
+        protected global::System.Web.UI.WebControls.Label lbl_codSeg;
         
         /// <summary>
-        /// txtBx_caractName control.
+        /// txtBx_codSeg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBx_caractName;
+        protected global::System.Web.UI.WebControls.TextBox txtBx_codSeg;
         
         /// <summary>
-        /// txtBx_caractValue control.
+        /// lbl_fechaVenc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBx_caractValue;
+        protected global::System.Web.UI.WebControls.Label lbl_fechaVenc;
         
         /// <summary>
-        /// btn_filtro control.
+        /// txtBx_fechaVenc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_filtro;
+        protected global::System.Web.UI.WebControls.TextBox txtBx_fechaVenc;
         
         /// <summary>
-        /// pnl_carros control.
+        /// btn_cancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_carros;
+        protected global::System.Web.UI.WebControls.Button btn_cancel;
         
         /// <summary>
-        /// lbl_order control.
+        /// btn_procesar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_order;
-        
-        /// <summary>
-        /// hl_order control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hl_order;
-        
-        /// <summary>
-        /// lbl_orderTip control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_orderTip;
-        
-        /// <summary>
-        /// pnl_infoSucursal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnl_infoSucursal;
-        
-        /// <summary>
-        /// lbl_infoSucursal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_infoSucursal;
-        
-        /// <summary>
-        /// lbl_distance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_distance;
-        
-        /// <summary>
-        /// lbl_horarios control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_horarios;
-        
-        /// <summary>
-        /// gv_horarios control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_horarios;
-        
-        /// <summary>
-        /// lbl_empleados control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_empleados;
-        
-        /// <summary>
-        /// gv_empleados control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_empleados;
+        protected global::System.Web.UI.WebControls.Button btn_procesar;
     }
 }

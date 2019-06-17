@@ -64,6 +64,8 @@
                 <asp:RadioButton ID="rdBtn_anho" runat="server" Text="Año" Height="30px" Width="80px" GroupName="filter" AutoPostBack="true"/>
                 <asp:TextBox ID="txtBx_anho" runat="server" Enabled="False"></asp:TextBox>
                 <asp:CompareValidator ID="compVal_anho" runat="server" ControlToValidate="txtBx_anho" CssClass="margin10" ErrorMessage="#!" Font-Bold="True" ForeColor="Red" Height="30px" Operator="DataTypeCheck" Type="Integer"></asp:CompareValidator>
+                <asp:RadioButton ID="rdBtn_tipo" runat="server" AutoPostBack="true" GroupName="filter" Height="30px" Text="Tipo" Width="80px" />
+                <asp:TextBox ID="txtBx_tipo" runat="server" Enabled="False"></asp:TextBox>
                 <br />
                 <br />
                 <asp:RadioButton ID="rdBtn_precio" runat="server" AutoPostBack="true" GroupName="filter" Height="30px" Text="Precio base (min. | max.)" Width="280px" />
@@ -105,13 +107,13 @@
                 <br />
                 <br />
                 <asp:Label ID="lbl_horarios" runat="server" CssClass="margin20" ForeColor="White" Text="Horarios de Sucursal:"></asp:Label>
-                <asp:Table ID="tbl_horarios" runat="server" BackColor="#66CCFF" BorderColor="#003399" BorderStyle="Solid" BorderWidth="3px" CssClass="margin20">
-                </asp:Table>
+                <asp:GridView ID="gv_horarios" runat="server" BackColor="#66CCFF" BorderColor="#003399" BorderWidth="3px" CssClass="margin20">
+                </asp:GridView>
                 <br />
                 <asp:Label ID="lbl_empleados" runat="server" CssClass="margin20" ForeColor="White" Text="Empleados de Sucursal:"></asp:Label>
                 <br />
-                <asp:Table ID="tbl_empleados" runat="server" BackColor="#66CCFF" CssClass="margin20" BorderColor="#003399" BorderStyle="Solid" BorderWidth="3px">
-                </asp:Table>
+                <asp:GridView ID="gv_empleados" runat="server" BackColor="#66CCFF" BorderColor="#003399" BorderWidth="3px" CssClass="margin20">
+                </asp:GridView>
                 <br />
             </asp:Panel>
 

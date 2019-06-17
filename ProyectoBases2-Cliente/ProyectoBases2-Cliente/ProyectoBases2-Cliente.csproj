@@ -74,6 +74,7 @@
     <Content Include="ConsultorMain.aspx" />
     <Content Include="FacturadorMain.aspx" />
     <Content Include="ClientMain.aspx" />
+    <Content Include="Facturador_Credito.aspx" />
     <Content Include="Facturador_Register.aspx" />
     <Content Include="LogInScreen.aspx" />
     <Content Include="OrderPage.aspx" />
@@ -81,6 +82,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Facturador_Credito.aspx.cs">
+      <DependentUpon>Facturador_Credito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Facturador_Credito.aspx.designer.cs">
+      <DependentUpon>Facturador_Credito.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Facturador_Register.aspx.cs">
       <DependentUpon>Facturador_Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

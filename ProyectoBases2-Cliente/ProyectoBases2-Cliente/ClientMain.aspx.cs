@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,12 +13,16 @@ namespace ProyectoBases2_Cliente
     {
         IPLocation location; //aqui se guarda la ubicacion (lat y long) del user
 
+        static string sucursalName;
+        static bool sucursalFlag = false;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.IsPostBack)
             {
                 rdBtn_Check();
-
+                if (sucursalFlag)
+                    loadSucursal();
             }
             else
             {
@@ -32,6 +37,32 @@ namespace ProyectoBases2_Cliente
             Response.Redirect("LogInScreen.aspx", false);
         }
 
+        private void loadSucursal()
+        {
+            if (IsPostBack)
+            {
+                //aqui va el codigo al seleccionar una sucursal
+                sucursalName = cmBx_sucursal.SelectedValue;
+                sucursalFlag = false;
+            }
+            else 
+            {
+                //aqui va cuando carga por primera vez (sucursalName esta vacio)
+                //Podria ejecutarse como... averiguar cual es la mas cercana, basandose en la posicion del user
+
+                sucursalName = "default"; // funcion para sacar sucursal mas cercana
+            }
+            Debug.WriteLine("sucursalName: " + sucursalName);
+            //setDistancia(); supongo
+            //setInfoHorarios();
+            //setInfoEmpleados();
+        }
+
+        protected void btn_sucursal_Click(object sender, EventArgs e)
+        {
+            sucursalFlag = true;
+        }
+
         protected void btn_usarFiltro_Click(object sender, EventArgs e)
         {
             if (pnl_filtro.Visible)
@@ -40,7 +71,6 @@ namespace ProyectoBases2_Cliente
                 pnl_filtro.Visible = true;
         }
 
-
         private void rdBtn_Check()
         {
             if (rdBtn_marca.Checked)
@@ -48,6 +78,7 @@ namespace ProyectoBases2_Cliente
                 txtBx_marca.Enabled = true;
                 txtBx_modelo.Enabled = false;
                 txtBx_anho.Enabled = false;
+                txtBx_tipo.Enabled = false;
                 txtBx_precioMin.Enabled = false;
                 txtBx_precioMax.Enabled = false;
                 txtBx_caractName.Enabled = false;
@@ -58,6 +89,7 @@ namespace ProyectoBases2_Cliente
                 txtBx_marca.Enabled = false;
                 txtBx_modelo.Enabled = true;
                 txtBx_anho.Enabled = false;
+                txtBx_tipo.Enabled = false;
                 txtBx_precioMin.Enabled = false;
                 txtBx_precioMax.Enabled = false;
                 txtBx_caractName.Enabled = false;
@@ -68,6 +100,18 @@ namespace ProyectoBases2_Cliente
                 txtBx_marca.Enabled = false;
                 txtBx_modelo.Enabled = false;
                 txtBx_anho.Enabled = true;
+                txtBx_tipo.Enabled = false;
+                txtBx_precioMin.Enabled = false;
+                txtBx_precioMax.Enabled = false;
+                txtBx_caractName.Enabled = false;
+                txtBx_caractValue.Enabled = false;
+            }
+            else if (rdBtn_tipo.Checked)
+            {
+                txtBx_marca.Enabled = false;
+                txtBx_modelo.Enabled = false;
+                txtBx_anho.Enabled = false;
+                txtBx_tipo.Enabled = true;
                 txtBx_precioMin.Enabled = false;
                 txtBx_precioMax.Enabled = false;
                 txtBx_caractName.Enabled = false;
@@ -78,6 +122,7 @@ namespace ProyectoBases2_Cliente
                 txtBx_marca.Enabled = false;
                 txtBx_modelo.Enabled = false;
                 txtBx_anho.Enabled = false;
+                txtBx_tipo.Enabled = false;
                 txtBx_precioMin.Enabled = true;
                 txtBx_precioMax.Enabled = true;
                 txtBx_caractName.Enabled = false;
@@ -88,6 +133,7 @@ namespace ProyectoBases2_Cliente
                 txtBx_marca.Enabled = false;
                 txtBx_modelo.Enabled = false;
                 txtBx_anho.Enabled = false;
+                txtBx_tipo.Enabled = false;
                 txtBx_precioMin.Enabled = false;
                 txtBx_precioMax.Enabled = false;
                 txtBx_caractName.Enabled = true;
@@ -97,11 +143,11 @@ namespace ProyectoBases2_Cliente
 
         private string getFiltro()
         {
-
             string filtro = "";
             if (rdBtn_marca.Checked) filtro = "Marca@" + txtBx_marca.Text;
             else if (rdBtn_modelo.Checked) filtro = "Modelo@" + txtBx_modelo.Text;
             else if (rdBtn_anho.Checked) filtro = "Año@" + txtBx_anho.Text;
+            else if (rdBtn_tipo.Checked) filtro = "Tipo@" + txtBx_tipo.Text;
             else if (rdBtn_precio.Checked) filtro = "Precio@" + txtBx_precioMin.Text + "@" + txtBx_precioMax.Text;
             else if (rdBtn_caracteristica.Checked) filtro = "Caracteristica@" + txtBx_caractName.Text + "@" + txtBx_caractValue.Text;
 
@@ -142,26 +188,6 @@ namespace ProyectoBases2_Cliente
 
         }
 
-        private void loadSucursal()
-        {
-            string sucursalName = "";
-            if (IsPostBack)
-            {
-                //aqui va el codigo al seleccionar una sucursal
-                sucursalName = cmBx_sucursal.SelectedValue;
-            }
-            else
-            {
-                //aqui va cuando carga por primera vez. Podria ejecutarse como... averiguar cual es la mas cercana, basandose en la posicion del user
-                sucursalName = "Sucursal cerca de Lat."; //+ location.Latitude + ":Long." + location.Longitude;
-            }
 
-            MessageBox.Show("Cargando sucursal "+sucursalName);
-        }
-
-        protected void btn_sucursal_Click(object sender, EventArgs e)
-        {
-            loadSucursal();
-        }
     }
 }
