@@ -151,7 +151,9 @@ namespace ProyectoBases2_Cliente
                 cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.Add(new SqlParameter("@idEmpleado", SqlDbType.Int));
                 cmd.Parameters["@idEmpleado"].Direction = ParameterDirection.Output;
-               
+                cmd.Parameters.Add(new SqlParameter("@nombreSucursal", SqlDbType.VarChar,50));
+                cmd.Parameters["@nombreSucursal"].Direction = ParameterDirection.Output;
+
                 SqlParameter returnParam = cmd.Parameters.Add("@return_value", SqlDbType.Int);
                 returnParam.Direction = ParameterDirection.ReturnValue;
 
@@ -165,7 +167,9 @@ namespace ProyectoBases2_Cliente
                 if (typeID > 0)
                 {
                     int idEmpleado = int.Parse(cmd.Parameters["@idEmpleado"].Value.ToString());
+                    string nombreSucursal = cmd.Parameters["@nombreSucursal"].Value.ToString();
                     Session["idEmpleado"] = idEmpleado;
+                    Session["nombreSucursal"] = nombreSucursal;
                 }
 
                 Debug.WriteLine("Return value: " + typeID);
@@ -182,5 +186,7 @@ namespace ProyectoBases2_Cliente
             }
             return true;
         }
+
+
     }
 }

@@ -16,6 +16,7 @@ namespace ProyectoBases2_Cliente
     {
         static IPLocation location; //aqui se guarda la ubicacion (lat y long) del user
         static string nombreSucursal = "";
+        static int idSucursal = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,28 +44,40 @@ namespace ProyectoBases2_Cliente
             bool cambio = true;
             if (IsPostBack)
             {
-                if (nombreSucursal == cmBx_sucursal.SelectedValue)
+                if (nombreSucursal == cmBx_sucursal.SelectedItem.Text)
                     cambio = false;
                 else
-                    nombreSucursal = cmBx_sucursal.SelectedValue;
+                {
+                    nombreSucursal = cmBx_sucursal.SelectedItem.Text;
+                    idSucursal = int.Parse(cmBx_sucursal.SelectedValue);
+
+                    Debug.WriteLine("Nombre sucursal: " + nombreSucursal);
+                    Debug.WriteLine("ID Sucursal: " + idSucursal);
+                }
             }
             else
             {
                 //aqui va cuando carga por primera vez. Podria ejecutarse como... averiguar cual es la mas cercana, basandose en la posicion del user
                 cargarNombresSucursales();
-                nombreSucursal = cmBx_sucursal.SelectedValue; //funcion para averiguar sucursal mas cercana. Retorna el nombre
+                nombreSucursal = cmBx_sucursal.SelectedItem.Text; //funcion para averiguar sucursal mas cercana. Retorna el nombre
+                idSucursal = int.Parse(cmBx_sucursal.SelectedValue);
+                setInfoCarros();
             }
             if (cambio) {
                 Debug.WriteLine("Nombre sucursal: " + nombreSucursal);
+                Debug.WriteLine("ID Sucursal: " + idSucursal);
                 //setDistancia(); supongo
+
                 setInfoHorarios();
                 setInfoEmpleados();
+                setInfoCarros();
             }
         }
 
         protected void btn_sucursal_Click(object sender, EventArgs e)
         {
             loadSucursal();
+            Session["idSucursal"] = idSucursal;
         }
 
         protected void btn_historial_Click(object sender, EventArgs e)
@@ -267,7 +280,7 @@ namespace ProyectoBases2_Cliente
             cmBx_sucursal.DataSource = dataSet;
             cmBx_sucursal.DataBind();
             cmBx_sucursal.DataTextField = "nombreSucursal";
-            cmBx_sucursal.DataValueField = "nombreSucursal";
+            cmBx_sucursal.DataValueField = "id";
             cmBx_sucursal.DataBind();
 
             cmBx_sucursal.SelectedIndex = 0;

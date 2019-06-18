@@ -13,9 +13,10 @@ namespace ProyectoBases2_Cliente
 {
     public partial class FacturadorMain : System.Web.UI.Page
     {
-        static string sucursalName;
-        static int clientID;
-        static int inventarioID;
+        static string sucursalName = "";
+        static int idFacturador = 0;
+        static int clientID = 0;
+        static int inventarioID = 0;
         static bool descuentoFlag = false;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -30,9 +31,8 @@ namespace ProyectoBases2_Cliente
             }
             else
             {
-                sucursalName = "default"; // la que corresponda al empleado, pasado por Session
-                clientID = -1;
-                inventarioID = -1;
+                sucursalName = Session["nombreSucursal"].ToString(); // la que corresponda al empleado, pasado por Session
+                idFacturador = int.Parse(Session["idEmpleado"].ToString());
                 txtBx_codSeg.Attributes.Add("maxlength", "3");
                 lbl_user.Text += Session["username"].ToString();
                 if (Session["admin"].ToString().Equals("1"))
@@ -148,7 +148,9 @@ namespace ProyectoBases2_Cliente
 
         protected void btn_findAuto_Click(object sender, EventArgs e)
         {
+            limpiarDatos();
             string autoID = txtBx_autoID.Text;
+            string Constr = WebConfigurationManager.ConnectionStrings["ProyectoBases"].ConnectionString;
 
             if (autoID.Equals(""))
             {
@@ -156,34 +158,57 @@ namespace ProyectoBases2_Cliente
                 return;
             }
 
+            string procedureName = "[Empresa].[dbo].[FiltrarAutosSucursal]";
+            SqlConnection con = new SqlConnection(Constr);
+            SqlCommand cmd = new SqlCommand(procedureName, con);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nombreSucursal", sucursalName);
+            cmd.Parameters.AddWithValue("@idTargetInventario", int.Parse(autoID));
+
+            SqlParameter returnParam = cmd.Parameters.Add("@return_value", SqlDbType.Int);
+            returnParam.Direction = ParameterDirection.ReturnValue;
+            try
+            {
+                con.Open();
+                using (SqlDataReader read = cmd.ExecuteReader())
+                {
+                    while (read.Read())
+                    {
+                        txtBx_marca.Text = (read["marca"].ToString());
+                        txtBx_modelo.Text = (read["modelo"].ToString());
+                        txtBx_anho.Text = (read["anho"].ToString());
+                        txtBx_tipo.Text = (read["tipo"].ToString());
+                        txtBx_caracteristicas.Text = (read["caracteristicas"].ToString());
+                        txtBx_precioBase.Text = (read["precio"].ToString());
+                    }
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            int returnValue = int.Parse(cmd.Parameters["@return_value"].Value.ToString());
+
             //procesa query de SQL
             // consigue ID, marca, modelo, año, tipo, caracteristicas y se calcula el precio (?
 
             //si no se encuentra el auto, se muestra un mensaje. Si hay info en los txtBx's, se vacian.
-            if (autoID.Equals("0"))
+            if (returnValue != 0)
             {
-                inventarioID = -1;
-                txtBx_marca.Text = "";
-                txtBx_modelo.Text = "";
-                txtBx_anho.Text = "";
-                txtBx_tipo.Text = "";
-                txtBx_caracteristicas.Text = "";
-                txtBx_precioTotal.Text = "";
+                limpiarDatos();                
                 MessageBox.Show("No se encontró un auto con el ID introducido");
             }
-            //si sí encuentra el auto, se ponen los datos en los txtBx
+
+            //No encontro el carro
+            if (txtBx_marca.Text.Equals(""))
+            {
+                inventarioID = -1;
+            }
             else
             {
-                inventarioID = 1; //id encontrado
-                txtBx_marca.Text = "marca"; //marca encontrada
-                txtBx_modelo.Text = "modelo"; //modelo encontrado
-                txtBx_anho.Text = "0000"; //año encontrado
-                txtBx_tipo.Text = "tipo"; //tipo encontrado
-                txtBx_caracteristicas.Text = "nombre: valor \n" +
-                                             "nombre: valor \n" +
-                                             "nombre: valor \n" +
-                                             "nombre: valor, valor, valor"; //caracteristicas encontradas
-                txtBx_precioTotal.Text = "10"; //precio total calculado (base + extras, supongo)
+                inventarioID = int.Parse(txtBx_autoID.Text);
             }
         }
 
@@ -199,6 +224,16 @@ namespace ProyectoBases2_Cliente
                 lbl_interes.Visible = false;
                 cmBx_interes.Visible = false;
             }
+        }
+
+        private void limpiarDatos()
+        {
+            txtBx_marca.Text = "";
+            txtBx_modelo.Text = "";
+            txtBx_anho.Text = "";
+            txtBx_tipo.Text = "";
+            txtBx_caracteristicas.Text = "";
+            txtBx_precioTotal.Text = "";
         }
 
         protected void cmBx_metodoPago_SelectedIndexChanged(object sender, EventArgs e)
@@ -226,6 +261,8 @@ namespace ProyectoBases2_Cliente
         protected void btn_procesar_Click(object sender, EventArgs e)
         {
             int metodoIndex = cmBx_metodoPago.SelectedIndex;
+            Boolean credito = chkBx_credito.Checked;
+
             Debug.WriteLine("clientID: " + clientID.ToString());
             Debug.WriteLine("inventarioID: " + inventarioID.ToString());
             if (clientID < 0)
@@ -250,9 +287,46 @@ namespace ProyectoBases2_Cliente
             {
                 try
                 {
-                    //registra pago en SQL
+                    string Constr = WebConfigurationManager.ConnectionStrings["ProyectoBases"].ConnectionString;
+                    //Venta normal
+                    if (!credito)
+                    {
+                       /* string procedureName = "[Empresa].[dbo].[CrearVenta]";
+                        SqlConnection con = new SqlConnection(Constr);
+                        SqlCommand cmd = new SqlCommand(procedureName, con);
+                        SqlDataReader reader = null;
 
-                    MessageBox.Show_Redirect("Venta de auto procesada exitosamente.", "FacturadorMain.aspx");
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idFacturador", idFacturador);
+                        cmd.Parameters.AddWithValue("@idCliente", clientID);
+                        cmd.Parameters.AddWithValue("@idInventario", inventarioID);
+                        cmd.Parameters.AddWithValue("@monto", double.Parse(txtBx_precioBase.Text));
+                        cmd.Parameters.AddWithValue("@idMetodoPago", metodoIndex);
+                        cmd.Parameters.AddWithValue("@nombreSucursal", sucursalName);
+
+                        SqlParameter returnParam = cmd.Parameters.Add("@return_value", SqlDbType.Int);
+                        returnParam.Direction = ParameterDirection.ReturnValue;
+
+                        con.Open();
+
+                        reader = cmd.ExecuteReader();
+
+                        int count = int.Parse(cmd.Parameters["@return_value"].Value.ToString());
+                        con.Close();
+
+                        if(count >= 0)
+                        {
+                            MessageBox.Show_Redirect("Venta de auto procesada exitosamente.", "FacturadorMain.aspx");
+                        }
+                        else
+                        {
+                            MessageBox.Show_Redirect("Hubo un error al procesar la venta.", "FacturadorMain.aspx");
+                        }*/
+                    }
+                    else
+                    {
+
+                    }
                 }
                 catch (Exception ex)
                 {
