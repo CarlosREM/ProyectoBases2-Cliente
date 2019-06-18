@@ -84,7 +84,7 @@
                 <asp:GridView ID="gv_inventario" runat="server" BackColor="#CCFFCC" BorderColor="#009900" BorderStyle="Solid" BorderWidth="3px">
                     <HeaderStyle BackColor="#009900" />
                 </asp:GridView>
-                soy una tabla</asp:Panel>
+            </asp:Panel>
             <br />
             <asp:Button ID="btn_consultInvGlobal" runat="server" CssClass="margin20" Font-Bold="True" ForeColor="Magenta" Text="Inventario (global)" Width="200px" OnClick="btn_consultInvGlobal_Click" Visible="False" />
             <asp:Panel ID="pnl_consultInvGlobal" runat="server" Style="padding-left:20px; padding-right:20px" Visible="False">

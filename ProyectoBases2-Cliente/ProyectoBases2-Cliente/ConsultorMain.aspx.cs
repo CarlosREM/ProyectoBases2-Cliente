@@ -32,7 +32,9 @@ namespace ProyectoBases2_Cliente
                     btn_consultVentasGlobal.Visible = true;
                     btn_consultVentasXTodo.Visible = true;
                     btn_consultVTP.Visible = true;
+                    btn_consultAutosMas.Visible = true;
                     btn_consultAutosMasGlobal.Visible = true;
+                    btn_consultAutosMenos.Visible = true;
                     btn_consultAutosMenosGlobal.Visible = true;
                 }
 
@@ -262,6 +264,7 @@ namespace ProyectoBases2_Cliente
                 setInfoEmpleados();
                 loadInteres();
                 Session["idSucursal"] = idSucursal;
+                Session["nombreSucursal"] = nombreSucursal;
             }
         }
 
