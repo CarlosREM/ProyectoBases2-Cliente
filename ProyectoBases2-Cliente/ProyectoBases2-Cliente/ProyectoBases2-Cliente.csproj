@@ -71,6 +71,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin_addAuto.aspx" />
+    <Content Include="Admin_editAuto.aspx" />
+    <Content Include="Client_Credito.aspx" />
     <Content Include="Client_Historial.aspx" />
     <Content Include="ConsultorMain.aspx" />
     <Content Include="FacturadorMain.aspx" />
@@ -83,6 +86,27 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin_addAuto.aspx.cs">
+      <DependentUpon>Admin_addAuto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin_addAuto.aspx.designer.cs">
+      <DependentUpon>Admin_addAuto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_editAuto.aspx.cs">
+      <DependentUpon>Admin_editAuto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin_editAuto.aspx.designer.cs">
+      <DependentUpon>Admin_editAuto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Client_Credito.aspx.cs">
+      <DependentUpon>Client_Credito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client_Credito.aspx.designer.cs">
+      <DependentUpon>Client_Credito.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Client_Historial.aspx.cs">
       <DependentUpon>Client_Historial.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
